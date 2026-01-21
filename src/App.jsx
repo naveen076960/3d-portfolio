@@ -3,7 +3,7 @@ import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
 
 function App() {
   return (
-    <div style={{ height: '100vh', width: '100vw' }}>
+   <div className="bg-black h-screen w-screen">
       {/* The Canvas is your window into the 3D world */}
       <Canvas>
         {/* Lights to see the object */}
@@ -23,7 +23,7 @@ function App() {
         {/* Allows you to rotate the object with your mouse */}
         <OrbitControls enableZoom={false} />
       </Canvas>
-    </div>
+    </div>  
   )
 }
 
