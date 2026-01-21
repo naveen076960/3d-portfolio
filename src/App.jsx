@@ -1,29 +1,26 @@
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
+import { BrowserRouter } from "react-router-dom";
+
+import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
 
 function App() {
   return (
-   <div className="bg-black h-screen w-screen">
-      {/* The Canvas is your window into the 3D world */}
-      <Canvas>
-        {/* Lights to see the object */}
-        <ambientLight intensity={1} />
-        <directionalLight position={[3, 2, 1]} />
-
-        {/* A 3D Sphere */}
-        <Sphere args={[1, 100, 200]} scale={2.5}>
-          <MeshDistortMaterial
-            color="#8352FD"
-            attach="material"
-            distort={0.5}
-            speed={2}
-          />
-        </Sphere>
-
-        {/* Allows you to rotate the object with your mouse */}
-        <OrbitControls enableZoom={false} />
-      </Canvas>
-    </div>  
+    <BrowserRouter>
+      <div className='relative z-0 bg-primary'>
+        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+          <Navbar />
+          <Hero />
+        </div>
+        <About />
+        <Experience />
+        <Tech />
+        <Works />
+        <Feedbacks />
+        <div className='relative z-0'>
+          <Contact />
+          <StarsCanvas />
+        </div>
+      </div>
+    </BrowserRouter> 
   )
 }
 
