@@ -39,7 +39,7 @@ const Hero = () => {
         <div className='absolute inset-0 opacity-20 bg-gradient-to-t from-[#915EFF]/20 to-transparent' />
       </div>
 
-      <div className='absolute inset-0 z-10 w-full lg:w-1/2 lg:left-1/2'>
+      <div className='absolute inset-0 z-10 w-full lg:w-1/2 lg:left-[43%]'>
   <ComputersCanvas />
 </div>
 
@@ -65,22 +65,31 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-30 pointer-events-auto'>
+      <div className='absolute xs:bottom-10 bottom-12 w-full flex justify-center items-center z-30 pointer-events-auto'>
         <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
-            />
-          </div>
-          
+          {/* We use a motion.svg instead of a div so we can animate it */}
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            // Tailwind classes to set size and color (white)
+            className="w-10 h-10 text-white"
+            // The Animation
+            animate={{
+              y: [0, 15, 0], // Move down 15px, then back up
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeInOut", // Makes the bounce feel smoother
+            }}
+          >
+            {/* The shape of the downward arrow (chevron) */}
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </motion.svg>
         </a>
       </div>
 
@@ -98,7 +107,7 @@ const Hero = () => {
           {/* LIGHT 2: Blue Light from the Bottom Right (Creates the gradient) */}
           <spotLight position={[5, -2, 5]} intensity={2} color="#00d8ff" />
 
-        <Sphere args={[1, 100, 200]} scale={2.5} position={[2.5, 0, 0]} >
+        <Sphere args={[1, 100, 200]} scale={2.3} position={[2.5, 0, 0]} >
 
           <MeshDistortMaterial
 
