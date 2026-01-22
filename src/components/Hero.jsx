@@ -10,35 +10,7 @@ import { OrbitControls, Sphere, MeshDistortMaterial, GradientTexture } from '@re
 const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto overflow-hidden`}>
-      {/* Starry night background */}
-      <div className='absolute inset-0 bg-black pointer-events-none'>
-        {/* Stars with blinking animation */}
-        <style>{`
-          @keyframes blink {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-          }
-        `}</style>
-        <div className='absolute inset-0'>
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className='absolute bg-white rounded-full'
-              style={{
-                width: Math.random() > 0.5 ? '2px' : '1px',
-                height: Math.random() > 0.5 ? '2px' : '1px',
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.7 + 0.3,
-                animation: `blink ${Math.random() * 3 + 1.5}s infinite`,
-              }}
-            />
-          ))}
-        </div>
-        {/* Purple gradient overlay */}
-        <div className='absolute inset-0 opacity-20 bg-gradient-to-t from-[#915EFF]/20 to-transparent' />
-      </div>
-
+      
       <div className='absolute inset-0 z-10 w-full lg:w-1/2 lg:left-[43%]'>
   <ComputersCanvas />
 </div>
@@ -48,19 +20,19 @@ const Hero = () => {
       >
         <div className='flex flex-col justify-center items-center mt-5'>
           {/* Animated dashed line design */}
-          <div className='w-1 h-1 bg-[#915EFF] rounded-full mb-2' />
-          <div className='w-1 h-1 bg-[#915EFF] rounded-full mb-2 opacity-75' />
-          <div className='w-1 h-1 bg-[#915EFF] rounded-full mb-2 opacity-50' />
-          <div className='w-0.5 sm:h-64 h-32 bg-gradient-to-b from-[#915EFF] via-[#915EFF] to-transparent' />
+          <div className='w-1 h-1 bg-[#00d8ff] rounded-full mb-2' />
+          <div className='w-1 h-1 bg-[#00d8ff] rounded-full mb-2 opacity-75' />
+          <div className='w-1 h-1 bg-[#00d8ff] rounded-full mb-2 opacity-50' />
+          <div className='w-0.5 sm:h-64 h-32 bg-gradient-to-b from-[#00d8ff] via-[#915EFF] to-transparent' />
         </div>
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, <br className='sm:block hidden' /> I'm <span className='text-[#00d8ff]'>Naveen</span>
+            Hi, <br className='sm:block hidden' /> I'm <span className='text-transparent bg-clip-text bg-gradient-to-r from-[#00d8ff] to-[#915EFF]'>Naveen</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            This is my 3D web portfolio, user <br className='sm:block hidden' />
-            interfaces and web applications
+            This is my 3D web portfolio <br className='sm:block hidden' />
+            
           </p>
         </div>
       </div>
@@ -103,7 +75,7 @@ const Hero = () => {
 
           {/* LIGHT 1: Purple Light from the Top Left */}
           <directionalLight position={[-2, 5, 2]} intensity={1} color="#915EFF" />
-
+          
           {/* LIGHT 2: Blue Light from the Bottom Right (Creates the gradient) */}
           <spotLight position={[5, -2, 5]} intensity={1.5} color="#00d8ff" />
 
@@ -115,7 +87,7 @@ const Hero = () => {
             distort={0.5}
             speed={2}
           >
-            <GradientTexture attach="emissiveMap" stops={[0, 1]} colors={['#2c3e50', '#00d8ff']} />
+            <GradientTexture attach="emissiveMap" stops={[0.25, 0.75]} colors={['#00d8ff','#915EFF']} />
           </MeshDistortMaterial>
         </Sphere>
 
