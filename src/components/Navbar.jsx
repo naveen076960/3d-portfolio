@@ -29,8 +29,8 @@ const Navbar = () => {
     <nav
       className={`${
         styles.paddingX
-      } w-full flex items-center py-4 sm:py-5 fixed top-0 z-20 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+      } } w-full flex items-center py-4 sm:py-5 fixed top-0 z-50 bg-gradient-to-r from-black via-gray-900 to-black ${
+        scrolled ? "shadow-lg" : ""
       }`}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
@@ -44,7 +44,7 @@ const Navbar = () => {
         >
           <img src={logo} alt='logo' className='w-8 h-8 sm:w-9 sm:h-9 object-contain' />
           <p className='text-white text-[16px] sm:text-[18px] font-bold cursor-pointer flex hidden sm:flex'>
-            Naveen &nbsp;
+            Naveen Oshada &nbsp;
             <span className='hidden sm:block'> | Fullstack Engineer</span>
           </p>
         </Link>

@@ -1,42 +1,85 @@
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
-import React from 'react'
+import { motion } from "framer-motion";
+
+import { styles } from "../styles";
+import { ComputersCanvas } from "./canvas";
 
 const Hero = () => {
   return (
-    <section className='w-full h-screen mx-auto flex flex-col lg:flex-row items-center lg:items-start gap-10 pt-20 lg:pt-40 px-6 lg:px-0'>
-      <div className='flex flex-col justify-center lg:justify-start items-center lg:items-start xl:px-0 sm:px-16 max-w-2xl w-full lg:w-1/2 flex-shrink-0'>
-        <h1 className='font-black text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 whitespace-nowrap'>
-          Hi, I'm <span className='text-[#915eff]'>Naveen</span>
-        </h1>
-        <p className='text-[#dfd9ff] font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[40px] mt-2 text-white-100'>
-          This is my 3D website, user <br className='sm:block hidden' />
-          interfaces and web applications
-        </p>
+    <section className={`relative w-full h-screen mx-auto overflow-hidden`}>
+      {/* Starry night background */}
+      <div className='absolute inset-0 bg-black pointer-events-none'>
+        {/* Stars with blinking animation */}
+        <style>{`
+          @keyframes blink {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+          }
+        `}</style>
+        <div className='absolute inset-0'>
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className='absolute bg-white rounded-full'
+              style={{
+                width: Math.random() > 0.5 ? '2px' : '1px',
+                height: Math.random() > 0.5 ? '2px' : '1px',
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.7 + 0.3,
+                animation: `blink ${Math.random() * 3 + 1.5}s infinite`,
+              }}
+            />
+          ))}
+        </div>
+        {/* Purple gradient overlay */}
+        <div className='absolute inset-0 opacity-20 bg-gradient-to-t from-[#915EFF]/20 to-transparent' />
       </div>
-      <div style={{ height: '100vh', width: '50vw', minWidth: '300px' }}>
-      {/* The Canvas is your window into the 3D world */}
-      <Canvas>
-        {/* Lights to see the object */}
-        <ambientLight intensity={1} />
-        <directionalLight position={[3, 2, 1]} />
 
-        {/* A 3D Sphere */}
-        <Sphere args={[1, 100, 200]} scale={2.5}>
-          <MeshDistortMaterial
-            color="#8352FD"
-            attach="material"
-            distort={0.5}
-            speed={2}
-          />
-        </Sphere>
+      <div className='absolute inset-0 z-10'>
+        <ComputersCanvas />
+      </div>
 
-        {/* Allows you to rotate the object with your mouse */}
-        <OrbitControls enableZoom={false} />
-      </Canvas>
-    </div>
+      <div
+        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 z-30 pointer-events-none`}
+      >
+        <div className='flex flex-col justify-center items-center mt-5'>
+          {/* Animated dashed line design */}
+          <div className='w-1 h-1 bg-[#915EFF] rounded-full mb-2' />
+          <div className='w-1 h-1 bg-[#915EFF] rounded-full mb-2 opacity-75' />
+          <div className='w-1 h-1 bg-[#915EFF] rounded-full mb-2 opacity-50' />
+          <div className='w-0.5 sm:h-64 h-32 bg-gradient-to-b from-[#915EFF] via-[#915EFF] to-transparent' />
+        </div>
+
+        <div>
+          <h1 className={`${styles.heroHeadText} text-white`}>
+            Hi, I'm <span className='text-[#915EFF]'>Naveen</span>
+          </h1>
+          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+            This is my 3D web portfolio, user <br className='sm:block hidden' />
+            interfaces and web applications
+          </p>
+        </div>
+      </div>
+
+      <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-30 pointer-events-auto'>
+        <a href='#about'>
+          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
+            <motion.div
+              animate={{
+                y: [0, 24, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop",
+              }}
+              className='w-3 h-3 rounded-full bg-secondary mb-1'
+            />
+          </div>
+        </a>
+      </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
