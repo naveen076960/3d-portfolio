@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
+import { MyCustomModelCanvas } from "./canvas";
 import { Canvas } from '@react-three/fiber'
+import MEyeCanvas from "./canvas/eye";
 
 import { OrbitControls, Sphere, MeshDistortMaterial, GradientTexture } from '@react-three/drei'
 
@@ -12,7 +13,7 @@ const Hero = () => {
     <section className={`relative w-full h-screen mx-auto overflow-hidden`}>
       
       <div className='absolute inset-0 z-10 w-full lg:w-1/2 lg:left-[43%]'>
-  <ComputersCanvas />
+  <MyCustomModelCanvas />
 </div>
 
       <div
