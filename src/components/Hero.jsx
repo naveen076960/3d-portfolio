@@ -3,7 +3,7 @@ import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import { Canvas } from '@react-three/fiber'
 
-import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
+import { OrbitControls, Sphere, MeshDistortMaterial, GradientTexture } from '@react-three/drei'
 
 
 
@@ -56,7 +56,7 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, <br className='sm:block hidden' /> I'm <span className='text-[#915EFF]'>Naveen</span>
+            Hi, <br className='sm:block hidden' /> I'm <span className='text-[#00d8ff]'>Naveen</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             This is my 3D web portfolio, user <br className='sm:block hidden' />
@@ -93,32 +93,30 @@ const Hero = () => {
         </a>
       </div>
 
-      // 3D Sphere with lighting effects
+      {/* 3D Sphere with lighting effects */}
       
        <div style={{ height: '100vh', width: '100vw' }}>
 
       <Canvas>
         {/* Ambient Light: General brightness */}
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={0.2} />
 
           {/* LIGHT 1: Purple Light from the Top Left */}
           <directionalLight position={[-2, 5, 2]} intensity={1} color="#915EFF" />
 
           {/* LIGHT 2: Blue Light from the Bottom Right (Creates the gradient) */}
-          <spotLight position={[5, -2, 5]} intensity={2} color="#00d8ff" />
+          <spotLight position={[5, -2, 5]} intensity={1.5} color="#00d8ff" />
 
         <Sphere args={[1, 100, 200]} scale={2.3} position={[2.5, 0, 0]} >
 
           <MeshDistortMaterial
-
-            color="#8352FD"
-
-            attach="material"
-
+            color="black"
+            emissive="white"
             distort={0.5}
-
             speed={2}
-          />
+          >
+            <GradientTexture attach="emissiveMap" stops={[0, 1]} colors={['#2c3e50', '#00d8ff']} />
+          </MeshDistortMaterial>
         </Sphere>
 
         {/* Allows you to rotate the object with your mouse */}

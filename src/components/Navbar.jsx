@@ -29,8 +29,8 @@ const Navbar = () => {
     <nav
       className={`${
         styles.paddingX
-      } } w-full flex items-center py-4 sm:py-5 fixed top-0 z-50 bg-gradient-to-r from-black via-gray-900 to-black ${
-        scrolled ? "shadow-lg" : ""
+      } w-full flex items-center py-4 sm:py-5 fixed top-0 z-50 ${
+        scrolled ? "bg-gradient-to-r from-[#000428] via-[#031316] to-[#000428] shadow-lg" : "bg-transparent"
       }`}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
