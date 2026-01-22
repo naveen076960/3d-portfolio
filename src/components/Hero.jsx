@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
-
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
+import { Canvas } from '@react-three/fiber'
+
+import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
+
+
 
 const Hero = () => {
   return (
@@ -35,9 +39,9 @@ const Hero = () => {
         <div className='absolute inset-0 opacity-20 bg-gradient-to-t from-[#915EFF]/20 to-transparent' />
       </div>
 
-      <div className='absolute inset-0 z-10'>
-        <ComputersCanvas />
-      </div>
+      <div className='absolute inset-0 z-10 w-full lg:w-1/2 lg:left-1/2'>
+  <ComputersCanvas />
+</div>
 
       <div
         className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5 z-30 pointer-events-none`}
@@ -52,7 +56,7 @@ const Hero = () => {
 
         <div>
           <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className='text-[#915EFF]'>Naveen</span>
+            Hi, <br className='sm:block hidden' /> I'm <span className='text-[#915EFF]'>Naveen</span>
           </h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             This is my 3D web portfolio, user <br className='sm:block hidden' />
@@ -76,8 +80,42 @@ const Hero = () => {
               className='w-3 h-3 rounded-full bg-secondary mb-1'
             />
           </div>
+          
         </a>
       </div>
+
+      // 3D Sphere with lighting effects
+      
+       <div style={{ height: '100vh', width: '100vw' }}>
+
+      <Canvas>
+        {/* Ambient Light: General brightness */}
+          <ambientLight intensity={0.5} />
+
+          {/* LIGHT 1: Purple Light from the Top Left */}
+          <directionalLight position={[-2, 5, 2]} intensity={1} color="#915EFF" />
+
+          {/* LIGHT 2: Blue Light from the Bottom Right (Creates the gradient) */}
+          <spotLight position={[5, -2, 5]} intensity={2} color="#00d8ff" />
+
+        <Sphere args={[1, 100, 200]} scale={2.5} position={[2.5, 0, 0]} >
+
+          <MeshDistortMaterial
+
+            color="#8352FD"
+
+            attach="material"
+
+            distort={0.5}
+
+            speed={2}
+          />
+        </Sphere>
+
+        {/* Allows you to rotate the object with your mouse */}
+        <OrbitControls enableZoom={false} />
+      </Canvas>
+    </div>
     </section>
   );
 };
