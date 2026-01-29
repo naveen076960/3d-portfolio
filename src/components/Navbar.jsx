@@ -43,7 +43,7 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt='logo' className='w-8 h-8 sm:w-9 sm:h-9 object-contain' />
-          <p className='text-white text-[16px] sm:text-[18px] font-bold cursor-pointer flex hidden sm:flex'>
+          <p className='text-white text-[16px] sm:text-[18px] font-bold cursor-pointer flex sm:flex'>
             Naveen &nbsp;
             <span className='hidden sm:block'> | Fullstack Dev</span>
           </p>
