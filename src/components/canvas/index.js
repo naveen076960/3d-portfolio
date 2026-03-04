@@ -3,6 +3,13 @@ import BallCanvas from "./Ball";
 import ComputersCanvas from "./Computers";
 import StarsCanvas from "./Stars";
 import MyCustomModelCanvas from "./MyCustomModel";
-import EyeCanvas from "./eye";
+import EyeCanvas from "./Eye";
 
-export { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas,MyCustomModelCanvas,EyeCanvas };
+export {
+  EarthCanvas,
+  BallCanvas,
+  ComputersCanvas,
+  StarsCanvas,
+  MyCustomModelCanvas,
+  EyeCanvas,
+};
