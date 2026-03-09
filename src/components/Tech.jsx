@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import SkillHelix from "./SkillHelix";
+import { styles } from "../styles";
 
 const technologies = [
   { name: "React.js" },
@@ -22,8 +23,8 @@ const Tech = () => {
   return (
     <div className="w-full h-screen bg-black relative overflow-hidden">
       {/* TITLE */}
-      <div className="absolute top-10 w-full z-10 pointer-events-none">
-        <h2 className="text-white text-center text-5xl font-black uppercase tracking-widest opacity-80">
+      <div className="absolute top-4 w-full z-10 pointer-events-none">
+        <h2 className={`${styles.sectionHeadText} text-center`}>
           Technical DNA
         </h2>
       </div>

@@ -6,8 +6,6 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import me from "../assets/me.png";
 import saturn from "../assets/background/saturn.png";
-// Make sure you have the actual path to your background image
-// import saturn from "../assets/backgrounds/saturn.png";
 
 // --- SUB-COMPONENT: HOLOGRAPHIC IMAGE ---
 const HolographicProfile = ({ imgSource }) => {
@@ -111,7 +109,7 @@ const About = () => {
         </div>
 
         {/* --- MAIN CONTENT START --- */}
-        <div className="flex flex-col md:flex-row gap-10 items-center pb-20">
+        <div className="flex flex-col md:flex-row gap-10 items-center pb-2">
           {/* 1. LEFT SIDE: THE NEW HOLOGRAPHIC IMAGE COMPONENT */}
           <motion.div
             variants={fadeIn("right", "spring", 0.5, 0.75)}
