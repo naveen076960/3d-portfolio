@@ -8,6 +8,7 @@ import {
   Sphere,
   MeshDistortMaterial,
   GradientTexture,
+  Stars,
 } from "@react-three/drei";
 
 const Hero = () => {
@@ -99,6 +100,17 @@ const Hero = () => {
           />
 
           <spotLight position={[5, -2, 5]} intensity={2.5} color="#00f7ff" />
+
+          {/* 2. Added the Stars component right here behind the distorted sphere */}
+          <Stars
+            radius={100}
+            depth={50}
+            count={5000}
+            factor={4}
+            saturation={0}
+            fade
+            speed={1}
+          />
 
           <Sphere args={[1, 100, 200]} scale={2.3} position={[2.5, 0, 0]}>
             <MeshDistortMaterial

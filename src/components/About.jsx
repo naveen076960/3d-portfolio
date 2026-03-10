@@ -5,7 +5,7 @@ import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import me from "../assets/me.png";
-import saturn from "../assets/background/saturn.png";
+import AboutBack from "../assets/background/AboutBack.png";
 
 // --- SUB-COMPONENT: HOLOGRAPHIC IMAGE ---
 const HolographicProfile = ({ imgSource }) => {
@@ -60,13 +60,15 @@ const HolographicProfile = ({ imgSource }) => {
     // Initial start after 1s
     const initialTimer = setTimeout(triggerGlitch, 1000);
 
-    // Cleanup timers on unmount (though this simple version doesn't strictly track the recursive timer ID, it's usually okay for visual effects)
     return () => clearTimeout(initialTimer);
   }, [controls]);
 
   return (
     // 1. The Glowing Emitter Container (Gradient Border)
-    <div className="relative p-[3px] rounded-2xl bg-gradient-to-r from-[#00f7ff] via-[#915eff] to-[#00f7ff] animate-gradient-xy shadow-[0_0_25px_-5px_rgba(145,94,255,0.6)]">
+    <div
+      className="relative p-[3px] rounded-2xl bg-gradient-to-r from-[#00f7ff] via-[#915eff]
+     to-[#00f7ff] animate-gradient-xy shadow-[0_0_25px_-5px_rgba(145,94,255,0.6)]"
+    >
       {/* 2. Scanline Overlay (Optional: adds subtle horizontal lines) */}
       <div
         className="absolute inset-[3px] z-10 rounded-2xl pointer-events-none mix-blend-overlay opacity-30"
@@ -86,7 +88,7 @@ const HolographicProfile = ({ imgSource }) => {
           animate={controls}
           variants={glitchVariants}
           initial="standard"
-          style={{ mixBlendMode: isGlitching ? "lighten" : "normal" }} // Helps the glitch colors pop
+          style={{ mixBlendMode: isGlitching ? "lighten" : "normal" }}
         />
       </div>
     </div>
@@ -98,14 +100,20 @@ const About = () => {
     <>
       <div className="relative">
         {/* --- BACKGROUND START --- */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-full z-[-1]">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-full z-[-1] ">
           {/* Ensure the path to saturn.png is correct in your imports */}
           <img
-            src={saturn}
+            src={AboutBack}
             alt="background"
             className="w-full h-full object-cover opacity-25"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, black 70%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, black 70%, transparent 100%)",
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary opacity-80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary opacity-80 "></div>
         </div>
 
         {/* --- MAIN CONTENT START --- */}
@@ -113,7 +121,7 @@ const About = () => {
           {/* 1. LEFT SIDE: THE NEW HOLOGRAPHIC IMAGE COMPONENT */}
           <motion.div
             variants={fadeIn("right", "spring", 0.5, 0.75)}
-            className="w-full md:w-[35%] relative "
+            className="w-3/4 md:w-[28%] relative"
           >
             {/*Replaced standard img tag with our new component */}
             <HolographicProfile imgSource={me} />
@@ -122,13 +130,17 @@ const About = () => {
           {/* 2. RIGHT SIDE: OVERVIEW TEXT (Unchanged for now) */}
           <div className="w-full md:w-[60%] flex flex-col justify-center md:pt-20 ">
             <motion.div variants={textVariant()}>
-              <p className={styles.sectionSubText}>Introduction</p>
-              <h2 className={styles.sectionHeadText}>About me.</h2>
+              <h2
+                className={`${styles.sectionHeadText} uppercase flex items-center justify-start lg:justify-start gap-3`}
+              >
+                About_me
+                <span className="w-4 h-8 bg-[#00f7ff] animate-pulse hidden lg:block"></span>
+              </h2>
             </motion.div>
 
             <motion.p
               variants={fadeIn("", "", 0.1, 1)}
-              className="mt-4 mr-4 ml-4 md:ml-0 text-secondary text-[17px] leading-[30px] text-justify"
+              className="mt-4 mb-20 mr-4 ml-4 md:ml-0 text-secondary text-[17px] leading-[30px] text-justify"
             >
               I am a Software Engineering Undergraduate and an ICT Tutor with a
               passion for both building systems and sharing knowledge. My

@@ -10,29 +10,30 @@ const projects = [
   {
     name: "Study Mate Core",
     description:
-      "A comprehensive educational ecosystem designed to streamline student workflows. Features include peer-to-peer resource sharing, integrated 'Kuppi' session scheduling, and a robust system architecture designed for scale.",
+      "A comprehensive educational ecosystem designed to streamline student workflows.Features include peer-to-peer resource sharing, integrated 'Kuppi' session scheduling, and a robust system architecture designed for scale.",
     tags: [
-      { name: "java", color: "text-[#00f7ff]" },
-      { name: "hibernate", color: "text-[#915eff]" },
+      { name: "javsscript", color: "text-[#00f7ff]" },
+      { name: "react.js", color: "text-[#915eff]" },
       { name: "mysql", color: "text-blue-400" },
+      { name: "node.js", color: "text-[#00f7ff]" },
+      { name: "firebase", color: "text-[#915eff]" },
+      { name: "API", color: "text-blue-400" },
     ],
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop", // Placeholder: Replace with your actual screenshot
-    source_code_link: "https://github.com/",
+    image: "src/assets/company/StudyMate.png", // Placeholder: Replace with your actual screenshot
+    source_code_link: "https://github.com/Dum1du/StudyMate",
     status: "ACTIVE_DEVELOPMENT",
   },
   {
-    name: "ICT Broadcast Node",
+    name: "ICT Tutor Node",
     description:
-      "Digital infrastructure and brand identity for the 'ICT with Naveen' educational initiative. Serves interactive tech education for Grade 6-11 students, utilizing custom graphics, YouTube broadcasting, and structured learning modules.",
+      "An active educational initiative delivering ICT tutoring for Grade 6-11 students. Integrated with the 'ICT with Naveen' YouTube channel to broadcast structured tech modules, utilizing custom digital assets to make computing accessible to the next generation.",
     tags: [
-      { name: "content-creation", color: "text-[#00f7ff]" },
-      { name: "graphic-design", color: "text-[#915eff]" },
-      { name: "education", color: "text-green-400" },
+      { name: "ed-tutor", color: "text-[#00f7ff]" },
+      { name: "youtube-broadcasting", color: "text-[#915eff]" },
+      { name: "content-creator", color: "text-green-400" },
     ],
-    image:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop", // Placeholder
-    source_code_link: "https://youtube.com/",
+    image: "src/assets/company/ICTwithNaveen.png", // Remember to replace this with your actual YouTube banner or thumbnail!
+    source_code_link: "https://www.youtube.com/@ICTWithNaveen", // You can link directly to your channel here
     status: "LIVE_TRANSMISSION",
   },
   {
@@ -40,13 +41,14 @@ const projects = [
     description:
       "A highly interactive 3D WebGL portfolio environment. Built to render complex geometries like floating DNA data structures and live terminal HUDs without sacrificing performance or frame rates.",
     tags: [
-      { name: "react", color: "text-[#00f7ff]" },
+      { name: "react.js", color: "text-[#00f7ff]" },
       { name: "three.js", color: "text-[#915eff]" },
       { name: "tailwind", color: "text-pink-400" },
+      { name: "node.js", color: "text-[#00f7ff]" },
+      { name: "firebase", color: "text-[#915eff]" },
     ],
-    image:
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop", // Placeholder
-    source_code_link: "https://github.com/",
+    image: "src/assets/company/portfolio.png",
+    source_code_link: "https://github.com/naveen076960/3d-portfolio",
     status: "ACTIVE_DEVELOPMENT",
   },
 ];
@@ -142,7 +144,12 @@ const Works = () => {
     <div>
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} text-[#915eff] font-mono`}></p>
-        <h2 className={`${styles.sectionHeadText} `}>Project Nodes</h2>
+        <h2
+          className={`${styles.sectionHeadText} uppercase flex items-center justify-start lg:justify-start gap-3`}
+        >
+          Project Nodes
+          <span className="w-4 h-8 bg-[#00f7ff] animate-pulse hidden lg:block"></span>
+        </h2>
       </motion.div>
 
       <div className="w-full flex">
@@ -156,7 +163,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-20 flex flex-wrap gap-7">
+      <div className="mt-10 flex flex-wrap gap-7">
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}

@@ -126,7 +126,26 @@
   animation: mulShdSpin 1.1s infinite ease;
   transform: translateZ(0);
 }
+/* GLOBAL CYBERPUNK SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px; /* Slightly wider for the main page */
+}
 
+::-webkit-scrollbar-track {
+  background: #050816; /* Dark background matching your theme */
+  border-left: 1px solid rgba(0, 247, 255, 0.1); /* Subtle cyber border */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 247, 255, 0.5); /* Neon cyan */
+  border-radius: 0px; /* Sharp, square edges for a tech feel */
+  box-shadow: inset 0 0 6px rgba(0, 247, 255, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(145, 94, 255, 0.8); /* Turns purple when you grab it */
+  box-shadow: inset 0 0 10px rgba(145, 94, 255, 1);
+}
 @keyframes mulShdSpin {
   0%,
   100% {

@@ -1,4 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
+import ScrollButton from "./components/ScrollButton";
 
 import {
   About,
@@ -47,15 +48,14 @@ function App() {
           <Hero />
         </div>
         <About />
-        {/*<Experience />*/}
         <Tech />
         <Works />
         <Feedbacks />
         <div className="relative z-0">
           <Contact />
-          <StarsCanvas />
         </div>
       </div>
+      <ScrollButton />
     </BrowserRouter>
   );
 }
