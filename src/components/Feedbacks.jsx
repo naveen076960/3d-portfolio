@@ -1,6 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "../firebase";
 
 // --- INITIAL MOCK DATA ---
 const initialTestimonials = [
@@ -99,44 +108,65 @@ const NetworkNode = ({
 );
 
 const Feedbacks = () => {
-  // 1. State to hold the live list of feedbacks
-  const [feedbacks, setFeedbacks] = useState(initialTestimonials);
-  // 2. State to hold the form input values
+  // We start with an empty array. Firebase will fill it instantly.
+  const [feedbacks, setFeedbacks] = useState([]);
   const [form, setForm] = useState({ name: "", role: "", message: "" });
+  const [isTransmitting, setIsTransmitting] = useState(false);
 
-  // Handle typing in the form
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  // 3. Handle Form Submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Stop the page from refreshing
+  // 2. FETCH DATA IN REAL-TIME
+  useEffect(() => {
+    // Query the "feedbacks" collection, ordered by newest first
+    const q = query(collection(db, "feedbacks"), orderBy("createdAt", "desc"));
 
-    // Prevent empty submissions
+    // onSnapshot listens for live updates. If someone adds feedback, this triggers instantly.
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const liveData = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setFeedbacks(liveData);
+    });
+
+    return () => unsubscribe(); // Cleanup connection when component unmounts
+  }, []);
+
+  // 3. PUSH DATA TO FIREBASE
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!form.name.trim() || !form.message.trim()) return;
 
-    // Create a new cyber-node with the user's data
-    const newFeedback = {
-      id: `NODE-0${feedbacks.length + 1}`,
-      // Generate a random hacker IP and Ping for flavor
-      ip: `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
-      latency: `${Math.floor(Math.random() * 30) + 2}ms`,
-      testimonial: form.message,
-      name: form.name,
-      // Split "Role @ Company" if they format it that way, otherwise just use the role
-      designation: form.role.split("@")[0]?.trim() || "Guest_User",
-      company: form.role.split("@")[1]?.trim() || "Unknown_Network",
-      // Use a default anonymous hacker avatar for new submissions
-      image: "https://api.dicebear.com/7.x/bottts/svg?seed=" + form.name,
-    };
+    setIsTransmitting(true);
 
-    // Add the new feedback to the TOP of the list
-    setFeedbacks([newFeedback, ...feedbacks]);
+    try {
+      // Build the payload
+      const newPayload = {
+        // Firebase generates a unique ID, but we keep your visual ID logic for the UI
+        visualId: `NODE-${Math.floor(Math.random() * 1000)}`,
+        ip: `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
+        latency: `${Math.floor(Math.random() * 30) + 2}ms`,
+        testimonial: form.message,
+        name: form.name,
+        designation: form.role.split("@")[0]?.trim() || "Guest_User",
+        company: form.role.split("@")[1]?.trim() || "Unknown_Network",
+        image: "https://api.dicebear.com/7.x/bottts/svg?seed=" + form.name,
+        createdAt: serverTimestamp(), // Tells Firebase to stamp the exact server time
+      };
 
-    // Clear the form
-    setForm({ name: "", role: "", message: "" });
+      // Push to the 'feedbacks' collection in Firestore
+      await addDoc(collection(db, "feedbacks"), newPayload);
+
+      // Clear the form
+      setForm({ name: "", role: "", message: "" });
+    } catch (error) {
+      console.error("Transmission Error:", error);
+      alert("[ERROR] Failed to connect to server.");
+    } finally {
+      setIsTransmitting(false);
+    }
   };
-
   return (
     <section className="w-full relative z-0 py-10 pb-20  mx-auto max-w-7xl px-6 sm:px-12 lg:px-16 overflow-hidden">
       <motion.div
@@ -216,12 +246,13 @@ const Feedbacks = () => {
                 className="bg-black/50 border border-gray-700 focus:border-[#00f7ff] outline-none text-white px-3 py-2 rounded-sm resize-none custom-scrollbar"
               ></textarea>
             </label>
-            {/* Changed button type to 'submit' */}
+
             <button
               type="submit"
-              className="mt-2 bg-transparent border border-[#00f7ff] text-[#00f7ff] hover:bg-[#00f7ff]/10 py-2 rounded-sm uppercase tracking-widest transition-colors shadow-[0_0_10px_rgba(0,247,255,0.2)] hover:shadow-[0_0_15px_rgba(0,247,255,0.5)]"
+              disabled={isTransmitting}
+              className="mt-2 bg-transparent border border-[#00f7ff] text-[#00f7ff] hover:bg-[#00f7ff]/10 py-2 rounded-sm uppercase tracking-widest transition-colors shadow-[0_0_10px_rgba(0,247,255,0.2)] hover:shadow-[0_0_15px_rgba(0,247,255,0.5)] disabled:opacity-50"
             >
-              Send_Packet
+              {isTransmitting ? "UPLOADING..." : "Send_Packet"}
             </button>
           </form>
         </motion.div>
@@ -231,14 +262,20 @@ const Feedbacks = () => {
           <div className="absolute left-0 sm:left-[-1px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#915eff]/50 via-gray-800 to-transparent z-0"></div>
 
           <div className="h-[340px] overflow-y-auto pr-2 sm:pr-4 custom-scrollbar relative z-10 flex flex-col">
-            {/* Render from the state variable, not the static array */}
-            {feedbacks.map((testimonial, index) => (
-              <NetworkNode
-                key={`${testimonial.id}-${index}`}
-                index={index}
-                {...testimonial}
-              />
-            ))}
+            {feedbacks.length === 0 ? (
+              <p className="text-gray-500 font-mono text-xs pl-10 mt-5 animate-pulse">
+                Waiting for inbound transmissions...
+              </p>
+            ) : (
+              feedbacks.map((testimonial, index) => (
+                <NetworkNode
+                  key={testimonial.id}
+                  index={index}
+                  id={testimonial.visualId}
+                  {...testimonial}
+                />
+              ))
+            )}
           </div>
 
           <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-black to-transparent pointer-events-none z-20"></div>
