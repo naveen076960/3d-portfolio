@@ -30,8 +30,6 @@ const Computers = ({ isMobile }) => {
   }, []);
 
   useFrame((state) => {
-    // 3. Use our global 'mouse.current' instead of 'state.mouse'
-    // This allows the robot to track the mouse even when it's outside the canvas div
     
     // Smoothly rotate the robot
     computer.scene.rotation.y = THREE.MathUtils.lerp(
@@ -39,6 +37,7 @@ const Computers = ({ isMobile }) => {
       -0.5 + mouse.current.x * 0.5, // Look Left/Right
       0.15
     );
+    
     computer.scene.rotation.x = THREE.MathUtils.lerp(
       computer.scene.rotation.x, 
       -0.01 + mouse.current.y * -0.2, // Look Up/Down
