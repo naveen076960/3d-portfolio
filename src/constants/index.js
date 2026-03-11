@@ -24,7 +24,7 @@ import {
   tripguide,
   threejs,
 } from "../assets";
-
+import studyMate from "../assets/company/StudyMate.png";
 export const navLinks = [
   {
     id: "about",
@@ -259,6 +259,11 @@ const projects = [
     ],
     image: tripguide,
     source_code_link: "https://github.com/",
+  },
+  {
+    title: "Study Mate",
+    company_name: "Self Project",
+    icon: studyMate, // <-- Use the imported variable!
   },
 ];
 
