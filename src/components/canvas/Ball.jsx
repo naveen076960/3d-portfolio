@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Ball = () => {
-  return (
-    <div>Ball</div>
-  )
-}
+  return null;
+};
 
-export default Ball
+export default Ball;
