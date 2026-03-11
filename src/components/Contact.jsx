@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [form, setForm] = useState({
@@ -20,12 +21,34 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    // TODO: Wire up EmailJS here.
-    setTimeout(() => {
-      setLoading(false);
-      alert("[SYSTEM] Transmission Sent Successfully.");
-      setForm({ name: "", email: "", message: "" });
-    }, 1500);
+    // emailjs.send(serviceID, templateID, templateParams, publicKey)
+    emailjs
+      .send(
+        "service_5r9br3j", //Service ID from EmailJS
+        "template_wq6ior6", // Template ID
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        "MxMPiXfLmufnbLeDK", //  Public Key
+      )
+      .then(
+        () => {
+          setLoading(false);
+          alert("[SYSTEM] Transmission Sent Successfully.");
+          setForm({
+            name: "",
+            email: "",
+            message: "",
+          });
+        },
+        (error) => {
+          setLoading(false);
+          console.error("Transmission Error:", error);
+          alert("[SYSTEM ERROR] Connection failed. Please try again.");
+        },
+      );
   };
 
   return (
