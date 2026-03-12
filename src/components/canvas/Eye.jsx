@@ -1,6 +1,6 @@
 import ComputersCanvas from "./Computers";
 
 const Ball = () => {
-  return <div>ComputerCanvas</div>;
+  return <div>{ComputersCanvas}</div>;
 };
 export default ComputersCanvas;
