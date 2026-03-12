@@ -19,7 +19,7 @@ const projects = [
       { name: "firebase", color: "text-[#915eff]" },
       { name: "API", color: "text-blue-400" },
     ],
-    image: "src/assets/company/StudyMate.png", // Placeholder: Replace with your actual screenshot
+    image: "/StudyMate.webp", // Placeholder: Replace with your actual screenshot
     source_code_link: "https://github.com/Dum1du/StudyMate",
     status: "ACTIVE_DEVELOPMENT",
   },
