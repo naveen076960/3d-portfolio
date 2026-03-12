@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { MyCustomModelCanvas } from "./canvas";
 import { Canvas } from "@react-three/fiber";
+import { ComputersCanvas } from "./canvas";
 
 import {
   OrbitControls,
