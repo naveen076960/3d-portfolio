@@ -24,7 +24,12 @@ import {
   tripguide,
   threejs,
 } from "../assets";
+
+// === YOUR CUSTOM IMAGE IMPORTS ===
 import studyMate from "../assets/company/StudyMate.png";
+import ictWithNaveen from "../assets/company/ICTwithNaveen.png";
+import portfolioIcon from "../assets/company/portfolio.png";
+
 export const navLinks = [
   {
     id: "about",
@@ -116,55 +121,36 @@ const technologies = [
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
+    title: "Lead Developer",
+    company_name: "Study Mate Application",
+    icon: studyMate,
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "Sep 2025 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
+      "Designing and developing the Study Mate application.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
     ],
   },
   {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
+    title: "Creator & Teacher",
+    company_name: "ICT with Naveen",
+    icon: ictWithNaveen,
     iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
+    date: "Jan 2026 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Creating educational content and technical tutorials for the ICT with Naveen YouTube channel.",
+      "Breaking down complex software development and hardware concepts for students.",
     ],
   },
   {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
+    title: "Frontend Developer",
+    company_name: "3D Web Portfolio",
+    icon: portfolioIcon,
     iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
+    date: "March 2026 - Present",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Building a highly interactive 3D web portfolio using React, Vite, and Three.js.",
+      "Configuring continuous deployment through Vercel and managing data via Firebase.",
     ],
   },
 ];
@@ -259,11 +245,6 @@ const projects = [
     ],
     image: tripguide,
     source_code_link: "https://github.com/",
-  },
-  {
-    title: "Study Mate",
-    company_name: "Self Project",
-    icon: studyMate, // <-- Use the imported variable!
   },
 ];
 
