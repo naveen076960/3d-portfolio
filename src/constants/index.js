@@ -253,19 +253,19 @@ const projects = [
   {
     title: "Study Mate",
     company_name: "Self Project",
-    icon: "/StudyMate.png", 
+    icon: "/StudyMate.png",
   },
   // ADD THIS NEW BLOCK RIGHT HERE:
   {
     title: "ICT with Naveen",
     company_name: "YouTube Channel",
     icon: "/ICTwithNaveen.png",
-  }
+  },
   {
     titile: "3D Web Portfolio",
     company_name: "Personal Project",
     icon: "/portfolio.png",
-  }
+  },
 ];
 
 export { services, technologies, experiences, testimonials, projects };
