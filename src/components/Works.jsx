@@ -32,7 +32,7 @@ const projects = [
       { name: "youtube-broadcasting", color: "text-[#915eff]" },
       { name: "content-creator", color: "text-green-400" },
     ],
-    image: "src/assets/company/ICTwithNaveen.png", // Remember to replace this with your actual YouTube banner or thumbnail!
+    image: "/ICTwithNaveen.webp", // Remember to replace this with your actual YouTube banner or thumbnail!
     source_code_link: "https://www.youtube.com/@ICTWithNaveen", // You can link directly to your channel here
     status: "LIVE_TRANSMISSION",
   },
@@ -47,7 +47,7 @@ const projects = [
       { name: "node.js", color: "text-[#00f7ff]" },
       { name: "firebase", color: "text-[#915eff]" },
     ],
-    image: "src/assets/company/portfolio.png",
+    image: "/portfolio.webp",
     source_code_link: "https://github.com/naveen076960/3d-portfolio",
     status: "ACTIVE_DEVELOPMENT",
   },
