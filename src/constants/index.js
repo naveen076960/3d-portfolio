@@ -30,6 +30,10 @@ import studyMate from "../assets/company/StudyMate.png";
 import ictWithNaveen from "../assets/company/ICTwithNaveen.png";
 import portfolioIcon from "../assets/company/portfolio.png";
 
+import studyMate from "/public/StudyMate.png";
+import ictWithNaveen from "/public/ICTwithNaveen.png";
+import portfolioIcon from "/public/portfolio.png";
+
 export const navLinks = [
   {
     id: "about",
@@ -246,6 +250,22 @@ const projects = [
     image: tripguide,
     source_code_link: "https://github.com/",
   },
+  {
+    title: "Study Mate",
+    company_name: "Self Project",
+    icon: "/StudyMate.png", 
+  },
+  // ADD THIS NEW BLOCK RIGHT HERE:
+  {
+    title: "ICT with Naveen",
+    company_name: "YouTube Channel",
+    icon: "/ICTwithNaveen.png",
+  }
+  {
+    titile: "3D Web Portfolio",
+    company_name: "Personal Project",
+    icon: "/portfolio.png",
+  }
 ];
 
 export { services, technologies, experiences, testimonials, projects };
