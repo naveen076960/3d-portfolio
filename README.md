@@ -7,7 +7,7 @@
 
 A highly interactive, cyberpunk-themed 3D WebGL portfolio environment. Built to render complex geometries and live terminal HUDs without sacrificing performance, providing a fully immersive experience to showcase projects, skills, and professional experience.
 
-**🔗 [View Live Deployment](https://your-vercel-link-here.vercel.app)**
+**🔗 [View Live Deployment]([https://your-vercel-link-here.vercel.app](https://naveenoshada.vercel.app/))**
 
 ---
 
@@ -45,5 +45,5 @@ Make sure you have Node.js installed on your machine.
 
 1. **Clone the repository**
    ```bash
-   git clone [https://github.com/your-username/3d-portfolio.git](https://github.com/your-username/3d-portfolio.git)
+   git clone [https://github.com/naveen076960/3d-portfolio.git](https://github.com/naveen076960/3d-portfolio.git)
    
