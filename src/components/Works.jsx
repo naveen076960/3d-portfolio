@@ -51,6 +51,19 @@ const projects = [
     source_code_link: "https://github.com/naveen076960/3d-portfolio",
     status: "ACTIVE_DEVELOPMENT",
   },
+  {
+    name: "TASKEY Node",
+    description:
+      "A native Android task management application engineered for optimal productivity. Built entirely in Java using Android Studio, this mobile application features intuitive task lifecycle tracking, state management, and a robust local data architecture to streamline daily workflows.",
+    tags: [
+      { name: "java", color: "text-[#00f7ff]" },
+      { name: "android-studio", color: "text-green-400" },
+      { name: "mobile-development", color: "text-[#915eff]" },
+    ],
+    image: "/taskey.webp",
+    source_code_link: "https://github.com/naveen076960/Taskey-Andriod",
+    status: "ACTIVE_DEVELOPMENT",
+  },
 ];
 
 // --- PROJECT CARD COMPONENT ---
